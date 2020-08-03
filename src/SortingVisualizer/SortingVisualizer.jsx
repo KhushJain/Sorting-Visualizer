@@ -118,12 +118,12 @@ restoreStoreButtons() {
 
   sort(algorithmName) {
     this.disableSortButtons();
-    const [animations, sortArray] = algorithms[algorithmName](this.state.array);
+    const [animations, ] = algorithms[algorithmName](this.state.array);
     for (let i = 0; i < animations.length; i++) {
         const isColorChange = animations[i][0] === "comparision1" || animations[i][0] === "comparision2";
         const arrayBars = document.getElementsByClassName('array-bar');
         if(isColorChange === true) {
-            const [comparision, barOneIndex, barTwoIndex] = animations[i];
+            const [ , barOneIndex, barTwoIndex] = animations[i];
             const color = (animations[i][0] === "comparision1") ? SECONDARY_COLOR : PRIMARY_COLOR;
             const barOneStyle = arrayBars[barOneIndex].style;
             const barTwoStyle = arrayBars[barTwoIndex].style;
@@ -136,7 +136,7 @@ restoreStoreButtons() {
         }
         else {
             setTimeout(() => {
-                const [overwrite, barOneIdx, newHeight] = animations[i];
+                const [ , barOneIdx, newHeight] = animations[i];
                 const barOneStyle = arrayBars[barOneIdx].style;
                 barOneStyle.height = `${newHeight}px`;
               },i * this.state.ANIMATION_SPEED_MS);

@@ -48,34 +48,6 @@ function partitionArray(auxillaryArray, startIndex, endIndex, animations) {
     swap(auxillaryArray, lessTailIndex, endIndex);
     return lessTailIndex;
 
-    // let pivot = auxillaryArray[endIndex];
-    // let pivotIndex = startIndex;
-    // for (let i = startIndex; i <= endIndex - 1; i++) {
-    //     animations.push([i, endIndex]);
-    //     animations.push([i, endIndex]);
-    //     if (auxillaryArray[i] <= pivot) {
-    //         //Swap these two heights
-    //         animations.push([i, auxillaryArray[pivotIndex]]);
-    //         animations.push([pivotIndex, auxillaryArray[i]]);
-    //         swap(auxillaryArray, i , pivotIndex);
-    //         pivotIndex++;
-    //     }
-    //     else {
-    //         animations.push([-1, -1]);
-    //         animations.push([-1, -1]);
-    //     }
-    //     animations.push([-1, -1]);
-    //     animations.push([-1, -1]);
-    // }
-    // animations.push([-1, -1]);
-    // animations.push([-1, -1]);
-    // animations.push([-1, -1]);
-    // animations.push([-1, -1]);
-    // //Swap these two heights
-    // animations.push([pivotIndex, auxillaryArray[endIndex]]);
-    // animations.push([endIndex, auxillaryArray[pivotIndex]]);
-    // swap(auxillaryArray, pivotIndex, endIndex);
-    // return pivotIndex;
 }
 
 function swap(auxillaryArray, firstIndex, secondIndex) {
@@ -97,6 +69,5 @@ function arraysAreEqual(firstArray, secondArray) {
 }
 
 function randomIntFromInterval(min, max) {
-    // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
