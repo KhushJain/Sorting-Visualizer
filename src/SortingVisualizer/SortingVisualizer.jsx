@@ -60,6 +60,8 @@ export default class SortingVisualizer extends Component {
   }
 
   disableSortButtons() {
+    document.getElementById("test5").disabled = true;
+
     document.getElementById("mergeSort").disabled = true;
     let buttonStyle = document.getElementById("mergeSort").style;
     buttonStyle.cursor = "default";
@@ -86,6 +88,8 @@ export default class SortingVisualizer extends Component {
     buttonStyle.background = "#000000";
 }
 restoreStoreButtons() {
+    document.getElementById("test5").disabled = false;
+
     document.getElementById("mergeSort").disabled = false;
     let buttonStyle = document.getElementById("mergeSort").style;
     buttonStyle.background = "#1abc9c";
@@ -123,7 +127,7 @@ restoreStoreButtons() {
             const color = (animations[i][0] === "comparision1") ? SECONDARY_COLOR : PRIMARY_COLOR;
             const barOneStyle = arrayBars[barOneIndex].style;
             const barTwoStyle = arrayBars[barTwoIndex].style;
-            //If we don't multiply by the index then every animations[i] wait for exactly ANIMATION_SPEED_MS and immediately change into final state
+
             setTimeout(() => {
                 barOneStyle.backgroundColor = color;
                 barTwoStyle.backgroundColor = color;
