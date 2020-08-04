@@ -1,4 +1,4 @@
-import { arraysAreEqual, randomIntFromInterval, swap } from '../helperFunctions';
+import { arraysAreEqual, swap } from '../helperFunctions';
 
 export const getQuickSortAnimations = (array) => {
     let animations  = [];
@@ -18,34 +18,24 @@ const quickSort = (mainArray, startIndex, endIndex, animations) => {
 }
 
 const partitionArray = (mainArray, startIndex, endIndex, animations) => {
-    let pivotIndex = randomIntFromInterval(startIndex, endIndex);
-    
-    animations.push(["comparision1", pivotIndex, endIndex]);
-    animations.push(["swap", pivotIndex, mainArray[endIndex]]);
-    animations.push(["swap", endIndex, mainArray[pivotIndex]]);
-    animations.push(["comparision2", pivotIndex, endIndex]);
-    swap(mainArray, pivotIndex, endIndex);
+    let i = startIndex - 1
+    const pivotIndex = endIndex;
 
-    let lessTailIndex = startIndex;
-
-    for(let i = startIndex; i < endIndex; ++i) {
-        animations.push(["comparision1", i, endIndex]);
-        animations.push(["comparision2", i, endIndex]);
-        if(mainArray[i] <= mainArray[endIndex]) {
-            animations.push(["comparision1", i, lessTailIndex]);
-            animations.push(["swap", i, mainArray[lessTailIndex]]);
-            animations.push(["swap", lessTailIndex, mainArray[i]]);
-            animations.push(["comparision2", i, lessTailIndex]);
-            swap(mainArray, i, lessTailIndex);
-            lessTailIndex++;
+    for(let j = startIndex; j < endIndex; ++j) {
+        animations.push(["comparision1", j, pivotIndex]);
+        animations.push(["comparision2", j, pivotIndex]);
+        if(mainArray[j] <= mainArray[pivotIndex]) {
+            i++;
+            animations.push(["swap", j, mainArray[i]]);
+            animations.push(["swap", i, mainArray[j]]);
+            swap(mainArray, i, j);
         }
     }
-    animations.push(["comparision1", lessTailIndex, endIndex]);
-    animations.push(["swap", endIndex, mainArray[lessTailIndex]]);
-    animations.push(["swap", lessTailIndex, mainArray[endIndex]]);
-    animations.push(["comparision2", lessTailIndex, endIndex]);
+
+    animations.push(["swap", endIndex, mainArray[i + 1]]);
+    animations.push(["swap", i + 1, mainArray[endIndex]]);
     
-    swap(mainArray, lessTailIndex, endIndex);
-    return lessTailIndex;
+    swap(mainArray, i + 1, endIndex);
+    return (i + 1);
 
 }

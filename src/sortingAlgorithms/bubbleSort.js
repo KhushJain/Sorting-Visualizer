@@ -10,10 +10,10 @@ export const getBubbleSortAnimations = (array) => {
 
 const bubbleSort = (mainArray, animations) => {
     const N = mainArray.length;
-    let iters = N - 1;
-    while(iters > 0) {
+
+    for(let j = 0; j < N; ++j) {
         let swapped = false;
-        for(let i = 0; i < iters; ++i) {
+        for(let i = 0; i < N-j-1; ++i) {
             animations.push(["comparision1", i, i + 1]);
             animations.push(["comparision2", i, i + 1]);
             if(mainArray[i] > mainArray[i + 1]) {
@@ -24,6 +24,5 @@ const bubbleSort = (mainArray, animations) => {
             }
         }
         if(swapped === false) break;
-        iters--;
     }
 }
