@@ -4,6 +4,7 @@ import { getQuickSortAnimations } from '../sortingAlgorithms/quickSort';
 import { getInsertionSortAnimations } from '../sortingAlgorithms/insertionSort';
 import { getSelectionSortAnimations } from '../sortingAlgorithms/selectionSort';
 import { getBubbleSortAnimations } from '../sortingAlgorithms/bubbleSort';
+import { getHeapSortAnimations } from '../sortingAlgorithms/heapSort';
 import { randomIntFromInterval } from '../helperFunctions';
 import './SortingVisualizer.css';
 
@@ -19,6 +20,7 @@ const algorithms = {
   "quickSort": getQuickSortAnimations,
   "selectionSort": getSelectionSortAnimations,
   "bubbleSort": getBubbleSortAnimations,
+  "heapSort": getHeapSortAnimations
 }
 
 export default class SortingVisualizer extends Component {
@@ -78,6 +80,11 @@ export default class SortingVisualizer extends Component {
     buttonStyle.cursor = "default";
     buttonStyle.background = "#000000";
 
+    document.getElementById("heapSort").disabled = true;
+    buttonStyle = document.getElementById("heapSort").style;
+    buttonStyle.cursor = "default";
+    buttonStyle.background = "#000000";
+
     document.getElementById("insertionSort").disabled = true;
     buttonStyle = document.getElementById("insertionSort").style;
     buttonStyle.cursor = "default";
@@ -110,6 +117,11 @@ restoreStoreButtons() {
 
     document.getElementById("quickSort").disabled = false;
     buttonStyle = document.getElementById("quickSort").style;
+    buttonStyle.background = "#1abc9c";
+    buttonStyle.cursor = "pointer";
+
+    document.getElementById("heapSort").disabled = false;
+    buttonStyle = document.getElementById("heapSort").style;
     buttonStyle.background = "#1abc9c";
     buttonStyle.cursor = "pointer";
 
@@ -167,12 +179,13 @@ restoreStoreButtons() {
           <label style={{ marginRight: '10px' }}>Array Size: </label>
           <input value={this.state.NUMBER_OF_ARRAY_BARS} type="range" id="test5" min="10" max="300" onChange={(e) => { this.setState({ NUMBER_OF_ARRAY_BARS: e.target.value }); this.resetArray(e.target.value); }} />
         </p>
-        <button className="custombtn second" id="generateNewArray" style={{ marginRight: '20px' }} onClick={() => this.resetArray(this.state.NUMBER_OF_ARRAY_BARS)}>Generate New Array</button>
-        <button className="custombtn second" id="mergeSort" style={{ marginRight: '20px' }} onClick={() => this.sort('mergeSort')}>Merge Sort</button>
-        <button className="custombtn second" id="quickSort" style={{ marginRight: '20px' }} onClick={() => this.sort('quickSort')}>Quick Sort</button>
-        <button className="custombtn second" id="bubbleSort" style={{ marginRight: '20px' }} onClick={() => this.sort('bubbleSort')}>Bubble Sort</button>
-        <button className="custombtn second" id="selectionSort" style={{ marginRight: '20px' }} onClick={() => this.sort('selectionSort')}>Selection Sort</button>
-        <button className="custombtn second" id="insertionSort" style={{ marginRight: '20px' }} onClick={() => this.sort('insertionSort')}>Insertion Sort</button>        
+        <button className="custombtn second" id="generateNewArray" style={{ marginRight: '8px' }} onClick={() => this.resetArray(this.state.NUMBER_OF_ARRAY_BARS)}>Generate New Array</button>
+        <button className="custombtn second" id="mergeSort" style={{ marginRight: '8px' }} onClick={() => this.sort('mergeSort')}>Merge Sort</button>
+        <button className="custombtn second" id="quickSort" style={{ marginRight: '8px' }} onClick={() => this.sort('quickSort')}>Quick Sort</button>
+        <button className="custombtn second" id="heapSort" style={{ marginRight: '8px' }} onClick={() => this.sort('heapSort')}>Heap Sort</button>
+        <button className="custombtn second" id="bubbleSort" style={{ marginRight: '8px' }} onClick={() => this.sort('bubbleSort')}>Bubble Sort</button>
+        <button className="custombtn second" id="insertionSort" style={{ marginRight: '8px' }} onClick={() => this.sort('insertionSort')}>Insertion Sort</button>        
+        <button className="custombtn second" id="selectionSort" style={{ marginRight: '8px' }} onClick={() => this.sort('selectionSort')}>Selection Sort</button>
         <br /><br />
         <div className="array-container">
           {array.map((value, idx) => (
