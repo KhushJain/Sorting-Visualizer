@@ -4,6 +4,7 @@ import { getQuickSortAnimations } from '../sortingAlgorithms/quickSort';
 import { getInsertionSortAnimations } from '../sortingAlgorithms/insertionSort';
 import { getSelectionSortAnimations } from '../sortingAlgorithms/selectionSort';
 import { getBubbleSortAnimations } from '../sortingAlgorithms/bubbleSort';
+import { randomIntFromInterval } from '../helperFunctions';
 import './SortingVisualizer.css';
 
 // This is the main color of the array bars.
@@ -177,9 +178,4 @@ restoreStoreButtons() {
       </>
     );
   }
-}
-
-
-const randomIntFromInterval = (min, max) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
 }

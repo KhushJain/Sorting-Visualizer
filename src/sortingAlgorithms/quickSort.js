@@ -1,14 +1,16 @@
-export function getQuickSortAnimations(array) {
+import { arraysAreEqual, randomIntFromInterval, swap } from '../helperFunctions';
+
+export const getQuickSortAnimations = (array) => {
     let animations  = [];
     let auxillaryArray = array.slice();
     quickSort(auxillaryArray, 0, auxillaryArray.length - 1, animations);
     const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
-    console.log("sort works correctly? ",arraysAreEqual(javaScriptSortedArray, auxillaryArray));
+    console.log(arraysAreEqual(javaScriptSortedArray, auxillaryArray));
     array = auxillaryArray;
     return [animations, array];
 }
 
-function quickSort(auxillaryArray, startIndex, endIndex, animations) {
+const quickSort = (auxillaryArray, startIndex, endIndex, animations) => {
     let pivotIndex;
     if (startIndex < endIndex) {
         pivotIndex = partitionArray(auxillaryArray, startIndex, endIndex, animations);
@@ -17,7 +19,7 @@ function quickSort(auxillaryArray, startIndex, endIndex, animations) {
     }
 }
 
-function partitionArray(auxillaryArray, startIndex, endIndex, animations) {
+const partitionArray = (auxillaryArray, startIndex, endIndex, animations) => {
     let pivotIndex = randomIntFromInterval(startIndex, endIndex);
     
     animations.push(["comparision1", pivotIndex, endIndex]);
@@ -48,26 +50,4 @@ function partitionArray(auxillaryArray, startIndex, endIndex, animations) {
     swap(auxillaryArray, lessTailIndex, endIndex);
     return lessTailIndex;
 
-}
-
-function swap(auxillaryArray, firstIndex, secondIndex) {
-    let temp = auxillaryArray[firstIndex];
-    auxillaryArray[firstIndex] = auxillaryArray[secondIndex];
-    auxillaryArray[secondIndex] = temp;
-}
-
-function arraysAreEqual(firstArray, secondArray) {
-    if (firstArray.length !== secondArray.length) {
-        return false;
-    }
-    for (let i = 0; i < firstArray.length; i++) {
-      if (firstArray[i] !== secondArray[i]) {
-        return false;
-      }
-    }
-    return true;
-}
-
-function randomIntFromInterval(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
 }

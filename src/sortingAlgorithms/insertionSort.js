@@ -1,14 +1,16 @@
-export function getInsertionSortAnimations(array) {
+import { arraysAreEqual } from '../helperFunctions';
+
+export const getInsertionSortAnimations = (array) => {
     let animations  = [];
     let auxillaryArray = array.slice();
     insertionSort(auxillaryArray, animations);
     const javaScriptSortedArray = array.slice().sort((a, b) => a - b);
-    console.log("sort works correctly? ",arraysAreEqual(javaScriptSortedArray, auxillaryArray));
+    console.log(arraysAreEqual(javaScriptSortedArray, auxillaryArray));
     array = auxillaryArray;
     return [animations, array];
 }
 
-function insertionSort(auxillaryArray, animations) {
+const insertionSort = (auxillaryArray, animations) => {
     const N = auxillaryArray.length;
     for (let i = 1; i < N; i++) {
         let key = auxillaryArray[i];
@@ -27,16 +29,4 @@ function insertionSort(auxillaryArray, animations) {
         animations.push(["overwrite", j + 1, key]);
         auxillaryArray[j + 1] = key;
     }
-}
-
-function arraysAreEqual(firstArray, secondArray) {
-    if (firstArray.length !== secondArray.length) {
-        return false;
-    }
-    for (let i = 0; i < firstArray.length; i++) {
-      if (firstArray[i] !== secondArray[i]) {
-        return false;
-      }
-    }
-    return true;
 }
